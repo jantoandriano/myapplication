@@ -5,7 +5,6 @@ import { ProfileScreen } from "../views/ProfileScreen";
 @ComponentV2
 export struct NavigationTabs {
   @Param @Require pageStack: NavPathStack = new NavPathStack()
-
   // State Tabs
   @Local currentIndex: number = 0;
   private tabsController: TabsController = new TabsController();
@@ -33,7 +32,7 @@ export struct NavigationTabs {
         .tabBar(this.tabBuilder('Home', 0, '🏠', '🏠'))
 
         TabContent() {
-          ProfileScreen()
+          ProfileScreen({ pageStack: this.pageStack })
         }
         .tabBar(this.tabBuilder('Profile', 1, '👤', '👤'))
       }

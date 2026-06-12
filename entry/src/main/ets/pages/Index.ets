@@ -16,6 +16,10 @@ struct Index {
     if (name === 'NavigationTabs') {
       NavigationTabs({ pageStack: this.pageStack })
     }
+
+    if (name === 'ProfileScreen') {
+      NavigationTabs({pageStack: this.pageStack})
+    }
   }
 
   @Builder

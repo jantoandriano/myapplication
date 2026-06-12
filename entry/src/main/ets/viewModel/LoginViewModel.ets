@@ -1,21 +1,36 @@
+import { AuthService } from "../services/AuthService";
+
 @ObservedV2
 export class LoginViewModel {
   @Trace public username: string = ''
   @Trace public password: string = ''
   @Trace public isLoading: boolean = false
+  @Trace public loginError: string = ''
+  @Trace public isError: boolean = false;
+
+  private authService = AuthService.getInstance();
 
   public executeLogin(onSuccess: () => void) {
-    console.log(`Attempting login in VM for username: ${this.username}`)
-
     if (!this.username || !this.password) {
-      return
+      this.loginError = 'Fields cannot be empty';
+      return;
     }
 
-    this.isLoading = true
+    this.isLoading = true;
+    this.loginError = '';
 
-    setTimeout(() => {
-      this.isLoading = false
-      onSuccess()
-    }, 2000)
+    this.authService.loginApi(this.username, this.password)
+      .then((isSuccess) => {
+        this.isLoading = false;
+        if (isSuccess) {
+          onSuccess();
+        } else {
+          this.loginError = 'Invalid credentials';
+        }
+      })
+      .catch(() => {
+        this.isLoading = false;
+        this.loginError = 'Network error occurred';
+      });
   }
 }

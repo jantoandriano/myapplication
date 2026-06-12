@@ -54,6 +54,6 @@ export struct LoginScreen {
 
   navigateToHome() {
     this.pageStack.pushPathByName('NavigationTabs', null)
-    console.log("Login verified. Moving stack timeline forward to HomePage.")
+    console.log("Login verified.")
   }
 }
