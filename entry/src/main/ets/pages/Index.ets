@@ -1,43 +1,64 @@
-import hilog from '@ohos.hilog'
-import { router, Router } from '@kit.ArkUI'
+import { LoginScreen } from '../components/LoginScreen/LoginScreen';
+import { NavigationTabs } from '../components/NavigationTabs'
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
-  build() {
-    Column() {
-      // App Logo / Title
-      Text('Welcome')
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .margin({ bottom: 40 })
+  @Local pageStack: NavPathStack = new NavPathStack()
 
-      // Login Button
-      Button('Sign In')
-        .onClick(() => {
-          this.handleLogin()
-        })
-        .width('90%')
-        .height(50)
-        .backgroundColor($r('app.color.primary'))
-
+  // Centralized Traffic Router Map
+  @Builder
+  pageMap(name: string) {
+    if (name === 'LoginScreen') {
+      LoginScreen({ pageStack: this.pageStack })
     }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-    .backgroundColor($r('app.color.white'))
+
+    if (name === 'NavigationTabs') {
+      NavigationTabs({ pageStack: this.pageStack })
+    }
+  }
+
+  @Builder
+  appLogoAndTitle() {
+    Text('Welcome')
+      .fontSize(24)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 40 })
+  }
+
+  @Builder
+  loginButton() {
+    Button('Sign In')
+      .onClick(() => {
+        this.handleLogin()
+      })
+      .width('90%')
+      .height(50)
+      .backgroundColor($r('app.color.primary'))
+  }
+
+  build() {
+    // Wrap your initial layout inside the modern Navigation container shell
+    Navigation(this.pageStack) {
+      Column() {
+        // App Logo / Title
+        this.appLogoAndTitle()
+
+        // Login Button
+        this.loginButton()
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
+      .backgroundColor($r('app.color.white'))
+    }
+    .navDestination(this.pageMap)
+    .mode(NavigationMode.Stack)
+    .hideTitleBar(true)
   }
 
   handleLogin() {
-    // Implement your authentication API or routing logic here
-    let uiContext: UIContext = this.getUIContext();
-    let router = uiContext.getRouter();
-
-    router.pushUrl({ url: "pages/LoginPage" }).then(() => {
-      console.log("Success navigate to LoginPage")
-    }).catch(() => {
-      console.log("Error navigate to LoginPage")
-    })
-
+    this.pageStack.pushPathByName('LoginScreen', null)
+    console.log("Modern navigation stack triggered: Moving to LoginPage")
   }
 }
