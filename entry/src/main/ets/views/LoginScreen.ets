@@ -4,7 +4,7 @@ import { LoginViewModel } from '../viewModel/LoginViewModel';
 
 @ComponentV2
 export struct LoginScreen {
-  @Local vm: LoginViewModel = new LoginViewModel()
+  @Local loginViewModel: LoginViewModel = new LoginViewModel()
   @Param @Require pageStack: NavPathStack = new NavPathStack()
 
   build() {
@@ -12,9 +12,9 @@ export struct LoginScreen {
       Column() {
         // Username Input
         CustomTextInput({
-          value: this.vm.username,
+          value: this.loginViewModel.username,
           changeValue: (val: string) => {
-            this.vm.username = val
+            this.loginViewModel.username = val
           },
           placeholder: "Enter your username",
           label: "Username",
@@ -23,9 +23,9 @@ export struct LoginScreen {
 
         // Password Input
         CustomTextInput({
-          value: this.vm.password,
+          value: this.loginViewModel.password,
           changeValue: (val: string) => {
-            this.vm.password = val
+            this.loginViewModel.password = val
           },
           placeholder: 'Enter your password',
           label: "Password",
@@ -36,11 +36,11 @@ export struct LoginScreen {
         CustomButton({
           label: 'Login',
           handleClick: () => {
-            this.vm.executeLogin(() => {
+            this.loginViewModel.executeLogin(() => {
               this.navigateToHome()
             })
           },
-          isLoading: this.vm.isLoading
+          isLoading: this.loginViewModel.isLoading
         })
 
       }
