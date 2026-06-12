@@ -4,7 +4,6 @@ import { router, Router } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       // App Logo / Title
@@ -34,7 +33,7 @@ struct Index {
     let uiContext: UIContext = this.getUIContext();
     let router = uiContext.getRouter();
 
-    router.pushUrl({url: "pages/LoginPage"}).then(() => {
+    router.pushUrl({ url: "pages/LoginPage" }).then(() => {
       console.log("Success navigate to LoginPage")
     }).catch(() => {
       console.log("Error navigate to LoginPage")

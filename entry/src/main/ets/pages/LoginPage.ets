@@ -6,19 +6,27 @@ import { CustomTextInput } from '../components/CustomTextInput';
 struct LoginPage {
   @State username: string = ''
   @State password: string = ''
-
   private DOMAIN: number = 0x0001;
   private TAG: string = "LoginComponent1"
-
 
   build() {
     Column() {
 
       // Username Input
-      CustomTextInput({value: this.username, placeholder: "Enter your username", label: "Username", inputType: InputType.Normal})
+      CustomTextInput({
+        value: this.username,
+        placeholder: "Enter your username",
+        label: "Username",
+        inputType: InputType.Normal
+      })
 
       // Password Input
-      CustomTextInput({value: this.password, placeholder: 'Enter your password', label: "Password", inputType: InputType.Password})
+      CustomTextInput({
+        value: this.password,
+        placeholder: 'Enter your password',
+        label: "Password",
+        inputType: InputType.Password
+      })
 
       // Login Button
       Button('Log In')
