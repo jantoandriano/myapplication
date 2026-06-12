@@ -1,4 +1,4 @@
-import hilog from '@ohos.hilog';
+import { CustomButton } from '../components/CustomButton';
 import { CustomTextInput } from '../components/CustomTextInput';
 
 @Entry
@@ -6,15 +6,13 @@ import { CustomTextInput } from '../components/CustomTextInput';
 struct LoginPage {
   @State username: string = ''
   @State password: string = ''
-  private DOMAIN: number = 0x0001;
-  private TAG: string = "LoginComponent1"
 
   build() {
     Column() {
 
       // Username Input
       CustomTextInput({
-        value: this.username,
+        value: $username,
         placeholder: "Enter your username",
         label: "Username",
         inputType: InputType.Normal
@@ -22,21 +20,19 @@ struct LoginPage {
 
       // Password Input
       CustomTextInput({
-        value: this.password,
+        value: $password,
         placeholder: 'Enter your password',
         label: "Password",
         inputType: InputType.Password
       })
 
       // Login Button
-      Button('Log In')
-        .onClick(() => {
+      CustomButton({
+        label: 'Login',
+        handleClick: () => {
           this.handleLogin()
-        })
-        .width('90%')
-        .height(50)
-        .backgroundColor($r("app.color.primary"))
-        .fontColor($r("app.color.white"))
+        }
+      })
 
     }
     .width('100%')
@@ -46,6 +42,6 @@ struct LoginPage {
   }
 
   handleLogin() {
-    hilog.info(this.DOMAIN, this.TAG, "Login with username", this.username)
+    console.log("Login with username", this.username)
   }
 }
