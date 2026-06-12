@@ -1,6 +1,6 @@
-import { CustomButton } from '../CustomButton';
-import { CustomTextInput } from '../CustomTextInput';
-import { LoginViewModel } from '../../viewModel/LoginViewModel';
+import { CustomButton } from '../components/CustomButton';
+import { CustomTextInput } from '../components/CustomTextInput';
+import { LoginViewModel } from '../viewModel/LoginViewModel';
 
 @ComponentV2
 export struct LoginScreen {

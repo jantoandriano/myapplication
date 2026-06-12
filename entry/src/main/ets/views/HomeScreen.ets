@@ -1,4 +1,4 @@
-import { Carousel } from '../Carousel';
+import { Carousel } from '../components/Carousel';
 
 @ComponentV2
 export struct HomeScreen {

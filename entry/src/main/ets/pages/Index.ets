@@ -1,4 +1,4 @@
-import { LoginScreen } from '../components/LoginScreen/LoginScreen';
+import { LoginScreen } from '../views/LoginScreen';
 import { NavigationTabs } from '../components/NavigationTabs'
 
 @Entry

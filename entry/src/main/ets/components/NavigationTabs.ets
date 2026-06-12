@@ -1,6 +1,6 @@
 // src/main/ets/components/NavigationTabs.ets
-import { HomeScreen } from "./HomeScreen/HomeScreen";
-import { ProfileScreen } from "./ProfileScreen/ProfileScreen";
+import { HomeScreen } from "../views/HomeScreen";
+import { ProfileScreen } from "../views/ProfileScreen";
 
 @ComponentV2
 export struct NavigationTabs {
