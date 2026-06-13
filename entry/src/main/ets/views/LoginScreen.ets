@@ -10,8 +10,8 @@ export struct LoginScreen {
   build() {
     NavDestination() {
       Column() {
-        // Username Input
-        Column(){
+        // ── USERNAME CONTAINER ─────────────────────────────
+        Column() {
           CustomTextInput({
             value: this.loginViewModel.username,
             changeValue: (val: string) => {
@@ -26,14 +26,14 @@ export struct LoginScreen {
             Text(this.loginViewModel.usernameError)
               .fontSize(12)
               .fontColor($r('app.color.error'))
-              .margin({ top: -10, bottom: 10, left: '5%' })
+              .margin({ top: 4, left: 4 }) // Clean spacing, no hacky negative offsets needed
           }
         }
-        .width('100%')
-        .alignItems(HorizontalAlign.Start)
+        .alignItems(HorizontalAlign.Start) // Align input + error to the left of this 90% box
+        .margin({ bottom: 16 }) // Clean separation between input blocks
 
-        // Password Input
-        Column(){
+        // ── PASSWORD CONTAINER ─────────────────────────────
+        Column() {
           CustomTextInput({
             value: this.loginViewModel.password,
             changeValue: (val: string) => {
@@ -48,13 +48,14 @@ export struct LoginScreen {
             Text(this.loginViewModel.passwordError)
               .fontSize(12)
               .fontColor($r('app.color.error'))
-              .margin({ top: -10, bottom: 10, left: '5%' })
+              .margin({ top: 4, left: 4 })
           }
         }
-        .width('100%')
         .alignItems(HorizontalAlign.Start)
+        .margin({ bottom: 32 }) // Generous breathing room before the action button
 
-        // Login Button
+        // ── LOGIN BUTTON ──────────────────────────────────
+        // (Assuming your CustomButton handles its own 90% width or adapts to parent bounds)
         CustomButton({
           label: 'Login',
           handleClick: () => {
@@ -68,7 +69,7 @@ export struct LoginScreen {
       }
       .width('100%')
       .height('100%')
-      .justifyContent(FlexAlign.Center)
+      .justifyContent(FlexAlign.Center) // Locks the entire login card group in the center vertical viewport
       .backgroundColor($r('app.color.white'))
     }
     .hideTitleBar(true)
