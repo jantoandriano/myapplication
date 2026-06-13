@@ -11,26 +11,48 @@ export struct LoginScreen {
     NavDestination() {
       Column() {
         // Username Input
-        CustomTextInput({
-          value: this.loginViewModel.username,
-          changeValue: (val: string) => {
-            this.loginViewModel.username = val
-          },
-          placeholder: "Enter your username",
-          label: "Username",
-          inputType: InputType.Normal
-        })
+        Column(){
+          CustomTextInput({
+            value: this.loginViewModel.username,
+            changeValue: (val: string) => {
+              this.loginViewModel.username = val
+            },
+            placeholder: "Enter your username",
+            label: "Username",
+            inputType: InputType.Normal
+          })
+
+          if (this.loginViewModel.usernameError) {
+            Text(this.loginViewModel.usernameError)
+              .fontSize(12)
+              .fontColor($r('app.color.error'))
+              .margin({ top: -10, bottom: 10, left: '5%' })
+          }
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.Start)
 
         // Password Input
-        CustomTextInput({
-          value: this.loginViewModel.password,
-          changeValue: (val: string) => {
-            this.loginViewModel.password = val
-          },
-          placeholder: 'Enter your password',
-          label: "Password",
-          inputType: InputType.Password
-        })
+        Column(){
+          CustomTextInput({
+            value: this.loginViewModel.password,
+            changeValue: (val: string) => {
+              this.loginViewModel.password = val
+            },
+            placeholder: 'Enter your password',
+            label: "Password",
+            inputType: InputType.Password
+          })
+
+          if (this.loginViewModel.passwordError) {
+            Text(this.loginViewModel.passwordError)
+              .fontSize(12)
+              .fontColor($r('app.color.error'))
+              .margin({ top: -10, bottom: 10, left: '5%' })
+          }
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.Start)
 
         // Login Button
         CustomButton({

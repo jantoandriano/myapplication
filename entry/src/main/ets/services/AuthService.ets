@@ -13,7 +13,7 @@ export class AuthService {
     // Replace this simulation with your actual connection utilities later
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(username === 'admin' && password === '1234');
+        resolve(username === 'admin' && password === '12345678');
       }, 2000);
     });
   }

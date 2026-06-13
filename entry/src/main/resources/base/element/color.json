@@ -19,6 +19,10 @@
     {
       "name": "tertiary",
       "value": "#FF5722"
+    },
+    {
+      "name": "error",
+      "value": "#c1121f"
     }
   ]
 }
